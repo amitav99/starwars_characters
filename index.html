@@ -1,19 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
+    <strong>Name</strong>
+    <div id="name"></div>
+
+    <strong>birth_year</strong>
+    <div id="birth_year"></div>
+
+    <strong>height</strong>
+    <div id="height"></div>
+
+    <button class="get_random_character">Randomize</button>
+
     <script>
-        const randomNumber = Math.ceil(Math.random() * 83)
+      const name = document.getElementById("name");
+      const birth_year = document.getElementById("birth_year");
+      const height = document.getElementById("height");
+      const button = document.querySelector(".get_random_character");
+      button.addEventListener("click", (e) => {
+        e.preventDefault();
+        const randomNumber = Math.ceil(Math.random() * 83);
         fetch(`https://swapi.dev/api/people/${randomNumber}/`)
-        .then (response=>response.json())
-        .then (character =>{
-            console.log(character)
-        } )
+          .then((response) => response.json())
+          .then((character) => {
+            console.log(character);
+            name.innerHTML = character["name"];
+            birth_year.innerHTML = document["birth_year"];
+            height.innerHTML = document["height"];
+          });
+      });
     </script>
-</body>
+  </body>
 </html>
